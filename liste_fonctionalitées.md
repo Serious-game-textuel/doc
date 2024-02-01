@@ -66,47 +66,95 @@ IHM -right- Mwa
 
 Class Partie{
   {static} id : Integer (auto increment)
-   
+  --
+  mort : int
+  action : int
+  lieu_visité : int
+  heure_debut : date(YYYY-MM-DD HH:MM:SS)
 }
 
 Class Inventaire{
   {static} id : Integer (auto increment)
+  --
 }
 
 
 Class Sauvegarde{
   {static} id : Integer (auto increment)
+  --
+}
+
+Class Sortie{
+  {static} id : Integer (auto increment)
+  {final}nom : string
 }
 
 Class Materiel{
   {static} id : Integer (auto increment)
   --
+  {final}description : string
+  {final}nom : string
+  status : Map(string, boolean)
 }
+
 Class Personnage{
   {static} id : Integer (auto increment)
   --
+  {final}description : string
+  {final}nom : string
+  status : Map(string, boolean)
 }
+
 Class Lieu{
   {static} id : Integer (auto increment)
   --
+  {final} description : string
+  {final}nom : string
+  status : Map(string, boolean)
+
 }
+
+Class Action{
+  {static} id : Integer (auto increment)
+  --
+  {final}nom : string
+}
+
+class Condition{
+  {static} id : Integer (auto increment)
+  --
+  {final}description : string[]
+}
+
+
+Class Reaction{
+  {static} id : Integer (auto increment)
+  --
+  {final}description : string
+  {final}changement_status : string
+  {final}transition_lieux : Map(string, string)
+}
+
 
 
 Class Indice{
   {static} id : Integer (auto increment)
   --
+  {final}description : string
 }
 
 
 ' Partie "1" o-u- "0..*" Joueur
-
+Sortie --o Lieu
+Sortie o-- Condition
 Personnage o-- Inventaire
 Partie o-- Inventaire
 Partie o- Sauvegarde
 Lieu o-- Inventaire
 Lieu o-- Indice
-Personnage o-- Indice
-Materiel o-- Indice
+Action o-- Condition
+Condition o-- Reaction
+Action --o Lieu
 Lieu o-- Personnage
 Partie o-- Lieu
 Inventaire o-- Materiel
