@@ -59,7 +59,6 @@ Class Partie{
     -langue : Langue
   --
     +bool change_lieu(id: int)
-    +void set_langue(langue : Langue)
 }
 
 Class Inventaire{
@@ -113,7 +112,6 @@ Class Lieu{
     +Personnage[] get_personnages()
     +bool check_action(action: Action)
     +Indice[] get_indices()
-    +bool set_status(string, bool)()
 }
 
 Class Action{
@@ -143,7 +141,7 @@ Class Reaction{
 Class Indice{
     -{static} id : int
   --
-    +description : string
+    -description : string
 }
 
 note "Chaque champ private a\nun getter et un setter" as N1
