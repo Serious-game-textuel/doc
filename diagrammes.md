@@ -85,17 +85,15 @@ Class Inventaire{
 
 
 Class Materiel{
-    -{static} id : int
+    
 }
 
 Class Personnage{
-    -{static} id : int
   --
     +Inventaire get_inventaire()
 }
 
 Class Lieu{
-    -{static} id : int
   --
     +Inventaire get_inventaire()
     +Personnage[] get_personnages()
@@ -113,39 +111,42 @@ Class Action{
     +bool check_condition()
 }
 
-class Condition{
+Class Condition{
     -{static} id : int
   --
+    +void do_reaction()
+}
+
+Class ConditionFeuille {
     -entite1 : Entite
     -entite2 : Entite
     -status : String
     -connecteur : String
     -condition : Condition
-  --
-    +void do_reaction()
+}
+
+Class ConditionNoeud {
+    -condition1 : Condition
+    -condition2 : Condition
+    -connecteur : String
+}
+
+Class Reaction {
+    -{static} id : int
+    -newStatus : String
+    -oldStatus : String
+    -materiel_add : Materiel
+    -materiel_remove : Materiel
+    -description : String
 }
 
 Class ReactionLieu{
-    -{static} id : int
-  --
     -lieux_affecte : Lieu
-    -newStatus : String
-    -oldStatus : String
-    -materiel_add : Materiel
-    -materiel_remove : Materiel
-    -description : String
 }
 
 Class ReactionPerso{
-    -{static} id : int
-  --
-    -newStatus : String
-    -oldStatus : String
     -perso_affecte : Personnage
-    -materiel_add : Materiel
-    -materiel_remove : Materiel
     -deplacement : Lieu
-    -description : String
 }
 
 
@@ -164,8 +165,7 @@ Partie o- Langue
 Lieu o-- Inventaire
 Lieu o-- Indice
 Action o-- Condition
-Condition o-- ReactionPerso
-Condition o-- ReactionLieu
+Condition o-- Reaction
 Action --o Lieu
 Lieu o-- Personnage
 Partie o-- Lieu
@@ -173,6 +173,10 @@ Inventaire o-- Materiel
 Entite o.. Personnage
 Entite o.. Lieu
 Entite o.. Materiel
+Reaction o.. ReactionLieu
+Reaction o.. ReactionPerso
+Condition o.. ConditionFeuille
+Condition o.. ConditionNoeud
 
 @enduml
 ```
