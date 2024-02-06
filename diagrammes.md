@@ -49,14 +49,27 @@ Enum Langue {
     EN
 }
 
+Class Jeu{
+  -partie : Partie
+  -sauvegarde : Partie
+}
+Class Entite{
+    -{static} id : int
+  --
+    -description : string
+    -nom : string
+    -status : string[]
+}
+
 Class Partie{
     -{static} id : int
   --
-    -mort : int
-    -action : int
-    -lieu_visité : int
+    -morts : int
+    -actions : int
+    -lieu_visités : int
     -heure_debut : date
-    -langue : Langue
+    -langues : Langue
+    -lieu_actuel : Lieu
   --
     +bool change_lieu(id: int)
 }
@@ -68,45 +81,21 @@ Class Inventaire{
     +Materiel[] get_materiel()
 }
 
-Class Sauvegarde{
-    -{static} id : int
-  --
-    +void creer_sauvegarde()
-    +void charger_sauvegarde()
-}
 
-Class Sortie{
-    -{static} id : int
-  --
-    -nom : string
-  --
-    +boolean check_condition()
-}
+
 
 Class Materiel{
     -{static} id : int
-  --
-    -description : string
-    -nom : string
-    -status : Map<string, bool>
 }
 
 Class Personnage{
     -{static} id : int
-  --
-    -description : string
-    -nom : string
-    -status : Map<string, boolean>
   --
     +Inventaire get_inventaire()
 }
 
 Class Lieu{
     -{static} id : int
-  --
-    -description : string
-    -nom : string
-    -status : Map<string, bool>
   --
     +Inventaire get_inventaire()
     +Personnage[] get_personnages()
@@ -117,7 +106,9 @@ Class Lieu{
 Class Action{
     -{static} id : int
   --
-    -nom : string
+    -entite1 : Entite
+    -entite2 : Entite
+    -connecteur : String
   --
     +bool check_condition()
 }
@@ -125,18 +116,38 @@ Class Action{
 class Condition{
     -{static} id : int
   --
-    -description : string[]
+    -entite1 : Entite
+    -entite2 : Entite
+    -status : String
+    -connecteur : String
+    -condition : Condition
   --
     +void do_reaction()
 }
 
-Class Reaction{
+Class ReactionLieu{
     -{static} id : int
   --
-    -description : string
-    -changement_status : string
-    -transition_lieux : Map<string, string>
+    -lieux_affecte : Lieu
+    -newStatus : String
+    -oldStatus : String
+    -materiel_add : Materiel
+    -materiel_remove : Materiel
+    -description : String
 }
+
+Class ReactionPerso{
+    -{static} id : int
+  --
+    -newStatus : String
+    -oldStatus : String
+    -perso_affecte : Personnage
+    -materiel_add : Materiel
+    -materiel_remove : Materiel
+    -deplacement : Lieu
+    -description : String
+}
+
 
 Class Indice{
     -{static} id : int
@@ -146,20 +157,22 @@ Class Indice{
 
 note "Chaque champ private a\nun getter et un setter" as N1
 
-Sortie --o Lieu
-Sortie o-- Condition
+Jeu o-- Partie
 Personnage o-- Inventaire
 Partie o-- Personnage
-Partie o- Sauvegarde
 Partie o- Langue
 Lieu o-- Inventaire
 Lieu o-- Indice
 Action o-- Condition
-Condition o-- Reaction
+Condition o-- ReactionPerso
+Condition o-- ReactionLieu
 Action --o Lieu
 Lieu o-- Personnage
 Partie o-- Lieu
 Inventaire o-- Materiel
+Entite o.. Personnage
+Entite o.. Lieu
+Entite o.. Materiel
 
 @enduml
 ```
