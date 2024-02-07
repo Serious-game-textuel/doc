@@ -93,6 +93,14 @@ Class Personnage{
     +Inventaire get_inventaire()
 }
 
+Class Joueur {
+
+}
+
+Class PNJ {
+
+}
+
 Class Lieu{
   --
     +Inventaire get_inventaire()
@@ -177,6 +185,8 @@ Reaction o.. ReactionLieu
 Reaction o.. ReactionPerso
 Condition o.. ConditionFeuille
 Condition o.. ConditionNoeud
+Personnage o.. Joueur
+Personnage o.. PNJ
 
 @enduml
 ```
