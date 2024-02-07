@@ -1,14 +1,14 @@
 Inventaire départ,torche,,,,,,,,,,,,
 Lieu départ,Hutte,,,,,,,,,,,,
 Status départ,,,,,,,,,,,,,
-interaction avec objet n'existant pas :,"verbe + ""quoi ?""",,,,,,,,,,,,
+interaction avec objet n'existant pas :,"verbe + "" quoi ?""",,,,,,,,,,,,
 Fouiller par défaut :,Vous ne trouvez rien de particulier,,,,,,,,,,,,
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
 Lieux,Hutte,Jardins Royaux,Etang,Sentier Sinueux,tres grand z'arbre,Pont-Levis,Cour,Escalier de la Tour,Tour,Escalier des Catacombes,Catacombes,Salle de Banquet,Salle du trône
+Statut,ouvert,ouvert,ouvert,ouvert,ouvert,ouvert,fermé,ouvert,fermé,ouvert,fermé,fermé,ouvert
 Indices,,,,,,,,,,,,,
 Sorties,Jardins Royaux,Etang / Sentier sinueux / hutte,Jardins royaux,Jardins royaux / pont-levis / très grand z'arbre,sentier sinueux,cour / sentier sinueux,pont-levis / salle de banquet / escalier de la tour / escalier des catacombes,cour / tour,escalier de la tour,catacombes / cour,escalier des catacombes,salle du trône / cour,salle du banquet
-Statut sorties,Ouvert,ouvert / ouvert / ouvert,ouvert,ouvert / ouvert / ouvert,ouvert,ferme / ouvert,ouvert / fermé / ouvert / ouvert ,ouvert / fermé,ouvert,fermé / ouvert,ouvert,ouvert / ouvert,ouvert
 Objets Lieu,Canne à pêche,roses,,,branche morte,,,,,,,bougie,
 Personnages,,,,,,troll,garde,,princesse,,fantôme,,
 Objets personnage,,,,,,,clef / épée,,,,couronne,,
