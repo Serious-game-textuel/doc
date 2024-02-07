@@ -28,7 +28,6 @@ Un scénario défini :
             - ```description``` : action spéciale exécutée automatiquement à l'entrée de chaque lieu
             - ```fouiller lieu``` : sera exécuté à la place de la réponse par défaut donnée en début de fichier
             - ```verbe objet``` : sera exécuté à la place de la réponse par défaut donnée en début de fichier
-            - ```verbe entité``` où entité est soit un lieu, un objet ou un personnage
             - tout autre forme n'aura pas d'action supplémentaire à celles du bloc
         - un champ condition de l'action de la forme :
             - ```entité a objet``` / ```entité a pas objet``` / ```entité possède objet``` / ```entité possède pas objet``` : vérifie si l'entité (lieu, personnage ou joueur) possède l'objet dans son inventaire.
