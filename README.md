@@ -32,8 +32,8 @@ Un scénario défini :
             - tout autre forme n'aura pas d'action supplémentaire à celles du bloc
         - un champ condition de l'action de la forme :
             - ```entité a objet``` / ```entité a pas objet``` / ```entité possède objet``` / ```entité possède pas objet``` : vérifie si l'entité (lieu, personnage ou joueur) possède l'objet dans son inventaire.
-            - ```entité est statut``` / ```entité est statut``` : vérifie di l'entité (lieu, personnage ou joueur) a ce statut
-            - ```entité dans lieu``` : vérifie que le joueur ou un personnage est dans un lieu.
+            - ```entité est statut``` / ```entité est pas statut``` : vérifie di l'entité (lieu, personnage ou joueur) a ce statut
+            - ```entité dans lieu``` / ```entité pas dans lieu``` : vérifie que le joueur ou un personnage est dans un lieu.
             - ```cond1 et cond2``` : vérifie si les conditions sont toutes les deux valides.
             - ```cond1 ou cond2``` : vérifie si au moins une des condition est valide.
             - une condition peut être entourée de parenthèses ```(cond1)``` pour pouvoir être prioritaire sur son évaluation sinon les ```et``` seront prioritaires sur les ```ou```. Notez que des espaces peuvent être ajoutés avant ou après les parenthèses.

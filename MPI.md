@@ -216,7 +216,7 @@ hide footbox
   - Expansion vers d'autres domaines : Une fois développé et testé dans le domaine de la maïeutique, le moteur pourrait être adapté et étendu à d'autres domaines éducatifs ou de formation professionnelle via la création de nouveaux scénario.
 
 - **Menaces :** 
-  - Contraintes vis a vis de moodle : le module doit être valider par moodle pour pouvoir être mis en place
+  - Contraintes vis a vis de moodle : le module doit être validé par moodle pour pouvoir être mis en place
   - Contraintes techniques : Les défis techniques liés à la mise en œuvre du moteur de jeu pourraient entraîner des retards ou des difficultés imprévues dans le développement du projet.
 
 ### Indicateurs pilotage
@@ -240,5 +240,5 @@ hide footbox
 
 4. **Motivation de l'équipe :**
    - Feedback des membres de l'équipe lors des réunions quotidiennes ou des rétrospectives.
-   - Taux d'absentéisme ou de rotation de l'équipe.
+   - Présence de l'équipe et entraide.
    - Participation active des membres de l'équipe aux différentes phases du projet.
