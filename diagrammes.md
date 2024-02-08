@@ -70,6 +70,7 @@ Class Partie{
     -heure_debut : date
     -langues : Langue
     -lieu_actuel : Lieu
+    -player : Joueur
   --
     +bool change_lieu(id: int)
 }
@@ -98,7 +99,7 @@ Class Joueur {
 }
 
 Class PNJ {
-
+ -emplacement_actuel : Lieu
 }
 
 Class Lieu{
@@ -107,14 +108,14 @@ Class Lieu{
     +Personnage[] get_personnages()
     +bool check_action(action: Action)
     +Indice[] get_indices()
+    +void ajoutPersonnage(personnage: Personnage)
+    +void retraitpersonnage(personnage: Personnage)
 }
 
 Class Action{
     -{static} id : int
   --
-    -entite1 : Entite
-    -entite2 : Entite
-    -connecteur : String
+    -description: String
   --
     +bool check_condition()
 }
