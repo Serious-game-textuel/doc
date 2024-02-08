@@ -45,3 +45,4 @@ Un scénario défini :
         - un champ lieu permettant de faire changer le joueur ou le personnage affecté de lieu. Ce champ permet aussi d'ajouter/retirer un/des statut ou un/des objets.
         - **Note :** des mots clés sont à disposition tel que ```moi``` pour parler du joueur et ```lieu``` pour parler du lieu actuel.
     - Notez que chaque bloc d'action est dans la colonne d'un lieu et donc ne peut s'exécuter que dans celui-ci. Cela rajoutera à chaque action la condition ```moi dans lieu``` automatiquement.
+    - Notez que deux entités **ne peuvent pas** avoir le même nom.
