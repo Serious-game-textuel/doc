@@ -71,6 +71,8 @@ Class Partie{
     -langues : Langue
     -lieu_actuel : Lieu
     -player : Joueur
+    -action_defaut_fouiller : Action
+    -action_defaut_interaction : Action
   --
     +bool change_lieu(id: int)
 }
@@ -81,9 +83,6 @@ Class Inventaire{
     +Materiel get_materiel(id: int)
     +Materiel[] get_materiel()
 }
-
-
-
 
 Class Materiel{
     
