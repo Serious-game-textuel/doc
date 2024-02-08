@@ -25,12 +25,11 @@ Un scénario défini :
     - les statuts des personnages sous forme de liste de liste **:warning: faire attention à garder le même ordre que les personnages**
     - des blocs d'actions possibles :
         - un champ action contenant le nom de l'action de la forme : 
-        **ATTENTION**
             - ```description``` : action spéciale exécutée automatiquement à l'entrée de chaque lieu
             - ```fouiller lieu``` : sera exécuté à la place de la réponse par défaut donnée en début de fichier
             - ```verbe objet``` : sera exécuté à la place de la réponse par défaut donnée en début de fichier
-            - ```verbe entité``` où entité est soit un lieu, un objet ou un personnage
             - tout autre forme n'aura pas d'action supplémentaire à celles du bloc
+            - :information_source: : un arbre récapitulatif de l'utilisation des actions par défaut se trouve [ici](./default_action_tree.md)
         - un champ condition de l'action de la forme :
             - ```entité a objet``` / ```entité a pas objet``` / ```entité possède objet``` / ```entité possède pas objet``` : vérifie si l'entité (lieu, personnage ou joueur) possède l'objet dans son inventaire.
             - ```entité est statut``` / ```entité est pas statut``` : vérifie di l'entité (lieu, personnage ou joueur) a ce statut
