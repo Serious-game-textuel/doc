@@ -71,10 +71,13 @@ Class Partie{
     -langues : Langue
     -lieu_actuel : Lieu
     -player : Joueur
-    -action_defaut_fouiller : Action
-    -action_defaut_interaction : Action
+    -action_defaut_fouiller : ActionDefaut
+    -action_defaut_interaction : ActionDefaut
+    -entities : Entity[]
   --
     +bool change_lieu(id: int)
+    +void add_entity(entity : Entity)
+    +Entity get_entity(name : string)
 }
 
 Class Inventaire{
@@ -116,7 +119,13 @@ Class Action{
   --
     -description: String
   --
-    +bool check_condition()
+    +string[] do_conditions()
+}
+
+Class ActionDefaut{
+    -{static} id : int
+  --
+    +string[] do_conditions_verb(verbe : string)
 }
 
 Class Condition{
@@ -173,6 +182,7 @@ Partie o- Langue
 Lieu o-- Inventaire
 Lieu o-- Indice
 Action o-- Condition
+Action o.. ActionDefaut
 Condition o-- Reaction
 Action --o Lieu
 Lieu o-- Personnage
