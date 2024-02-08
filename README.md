@@ -43,6 +43,6 @@ Un scénario défini :
         - un champ "status +" sous la forme de liste de statuts permettant d'ajouter des statuts à l'entité ciblée. Si le statut ```mort``` est ajouté au joueur, il perd la partie. Si le statut ```victoire``` est ajouté au joueur, il gagne a partie.
         - un champ "status -" sous la forme d'une liste de statut permettant de retirer des statuts à l'entité ciblée. Notez que si un "status -" n'est pas déjà présent sur l'entité, rien ne se passera pour ce statut mais les autres seront quand même pris en compte.
         - des champs "objets +", "objets -" sous la forme de liste d'objets permettant d'ajouter ou de retirer des objets à l'entité ciblée. Notez que si un "objet -" n'est déjà pas présent sur l'entité, rien ne se passera pour cet objet mais les autres seront quand même pris en compte.
-        - un champ changement de lieu permettant de faire changer le joueur ou le personnage affecté (obligatoirement) de lieu.
+        - un champ lieu permettant de faire changer le joueur ou le personnage affecté de lieu. Ce champ permet aussi d'ajouter/retirer un/des statut ou un/des objets.
         - **Note :** des mots clés sont à disposition tel que ```moi``` pour parler du joueur et ```lieu``` pour parler du lieu actuel.
     - Notez que chaque bloc d'action est dans la colonne d'un lieu et donc ne peut s'exécuter que dans celui-ci. Cela rajoutera à chaque action la condition ```moi dans lieu``` automatiquement.
