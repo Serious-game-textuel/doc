@@ -12,7 +12,7 @@ sudo mkdir /var/moodletest
 sudo chmod -R 777 /var/moodletest
 
 puis dans le fichier config.php de moodle ajouter les ligne suivante:
-$CFG->phpunit_dataroot = 'moodletest';
+$CFG->phpunit_dataroot = '/var/moodletest';
 $CFG->phpunit_prefix = 'phpu_';
 
 Ensuite,Moodle a besoin d’un fichier de configuration PHPUnit spécifique. Heureusement, Moodle fournit un script pour générer ce fichier. Dans le terminal, à la racine de votre projet Moodle, exécutez la commande suivante :
