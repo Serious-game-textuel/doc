@@ -1,0 +1,160 @@
+```plantuml
+@startuml
+
+Enum Language {
+    FR
+    EN
+}
+
+Class App {
+    -{static} instance : App
+    -game : Game
+    -save : Game
+    -csvdata : string[][]
+    -startentities : Entity[]
+    -language : Language
+    -playerkeyword : string
+    -actionsdone : Action[]
+}
+
+Class Entity {
+    -{static} id : int
+    --
+    -description : string
+    -name : string
+    -status : string[]
+}
+
+Class Game {
+    -{static} id : int
+    --
+    -deaths : int
+    -actions : int
+    -visitedlocations : Location[]
+    -starttime : DateTime
+    -player : Player_Character
+    -defaultactionsearch : Default_Action
+    -defaultactioninteract : Default_Action
+    -entities : Entity[]
+}
+
+Class Reaction {
+    -{static} id : int
+    --
+    -description : string
+    -oldstatus : string[]
+    -newstatus : string[]
+    -olditems : Item[]
+    -newitems : Item[]
+}
+
+Class Inventory {
+    -{static} id : int
+    --
+    -items : Item[]
+}
+
+Class Action {
+    -{static} id : int
+  --
+    -description: string
+    -conditions : Condition[]
+}
+
+Class Default_Action {
+}
+
+Class Condition {
+    -{static} id : int
+    --
+    -reactions : Reaction[]
+}
+
+Class Leaf_Condition {
+    -entity1 : Entity
+    -entity2 : Entity
+    -status : string[]
+    -connector : string
+}
+
+Class Node_Condition {
+    -condition1 : Condition
+    -condition2 : Condition
+    -connecteur : string
+}
+
+Class Player_Character {}
+
+Class Item {}
+
+Class Location {
+    -inventory : Inventory
+    -hints : Hint[]
+    -actions : Action[]
+}
+
+Class Location_Reaction {
+    -location : Location
+}
+
+Class Character {
+    -inventory : Inventory
+    -currentlocation : Location
+}
+
+Class Character_Reaction {
+    -character : Character
+    -newlocation : Location
+}
+
+Class No_Entity_Reaction {}
+
+Class Hint {
+    -{static} id : int
+  --
+    -description : string
+}
+
+Class Npc_Character {}
+
+Reaction o- Character_Reaction
+Action o- Default_Action
+Entity o- Item
+Entity o- Location
+Entity o- Character
+Condition o- Leaf_Condition
+Reaction o- Location_Reaction
+Reaction o- No_Entity_Reaction
+Condition o- Node_Condition
+Character o- Npc_Character
+Character o- Player_Character
+
+App -- Game
+App -- Entity
+App -- Language
+App -- Action
+Game -- Location
+Game -- Player_Character
+Game -- Default_Action
+Game -- Entity
+Action -- Condition
+Reaction -- Item
+Inventory -- Item
+Condition -- Reaction
+Leaf_Condition -- Entity
+Node_Condition -- Condition
+Location -- Inventory
+Location -- Hint
+Location -- Action
+Location_Reaction -- Location
+Character -- Inventory
+Character -- Location
+Character_Reaction -- Location
+Character_Reaction -- Character
+
+
+
+
+
+@enduml
+```
