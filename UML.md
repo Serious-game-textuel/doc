@@ -117,40 +117,40 @@ Class Hint {
 
 Class Npc_Character {}
 
-Reaction o- Character_Reaction
-Action o- Default_Action
-Entity o- Item
-Entity o- Location
-Entity o- Character
-Condition o- Leaf_Condition
-Reaction o- Location_Reaction
-Reaction o- No_Entity_Reaction
-Condition o- Node_Condition
-Character o- Npc_Character
-Character o- Player_Character
+Reaction o.. Character_Reaction
+Action o.. Default_Action
+Entity o.. Item
+Entity o.. Location
+Entity o.. Character
+Condition o.. Leaf_Condition
+Reaction o.. Location_Reaction
+Reaction o.. No_Entity_Reaction
+Condition o.down. Node_Condition
+Character o.. Npc_Character
+Character o.. Player_Character
 
-App -- Game
-App -- Entity
-App -- Language
-App -- Action
-Game -- Location
-Game -- Player_Character
-Game -- Default_Action
-Game -- Entity
-Action -- Condition
-Reaction -- Item
-Inventory -- Item
-Condition -- Reaction
-Leaf_Condition -- Entity
-Node_Condition -- Condition
-Location -- Inventory
-Location -- Hint
-Location -- Action
-Location_Reaction -- Location
-Character -- Inventory
-Character -- Location
-Character_Reaction -- Location
-Character_Reaction -- Character
+App --o Game
+/'App o-- Entity'/
+App -o Language
+App --o Action
+Game --o Location
+/'Game o-- Player_Character'/
+/'Game o-up- Default_Action'/
+/'Game o-right- Entity'/
+Action --o Condition
+/'Reaction o-- Item'/
+Inventory --o Item
+Condition --o Reaction
+/'Leaf_Condition --o Entity'/
+Node_Condition --o Condition
+Location --o Inventory
+Location --o Hint
+Location --o Action
+Location_Reaction --o Location
+Character --o Inventory
+Character --o Location
+Character_Reaction --o Location
+Character_Reaction --o Character
 
 
 
