@@ -1,48 +1,159 @@
-### Création d'un scénario
+# ENGLISH
 
-Un scénario est défini dans un fichier `.csv`.
+## Scenario creation
 
-Un exemple de scénario vous est fourni [ici](./exemple.csv).
+A scenario is creating with a CSV file. You will find an example ```TODO```.
 
-Une liste sera de la forme : ```element1 / element2 / element3 ...``` (les `/` peuvent ne pas être entourés d'espaces)
+***Note* : Some cells will contain lists. They have the following syntax : ```elem1 / elem2 / elem3```. It it possible to write lists with 0 or 1 element.**
 
-Une liste de liste sera de la forme : ```[liste1] / [liste2] / [liste3] ...``` (les `/` peuvent ne pas être entourés d'espaces)
+### General Properties
 
-Un scénario défini :
-- un inventaire de départ composé d'une liste de objets
-- un statut de départ composé d'une liste de statuts
-- un lieu de départ
-- une intéraction par défaut avec un objet de la forme : ```"ch1" + verbe + "ch2"``` où ```verbe``` sera automatiquement remplacé par le verbe de l'action demandée, ```ch1``` et ```ch2``` seront 2 chaînes de caractères potentiellement nulle.
-- une réponse à l'action 'fouiller' par défaut sous la forme d'une chaîne de caractères.
-- les lieux :
-    - son nom sous la forme d'une chaîne de caractères
-    - ses statuts de base sous forme de liste
-    - ses indices sous la forme d'une liste
-    - ses sorties possibles sous la forme d'une liste de lieux
-    - les objets présents dans ce lieu sous forme de liste
-    - les personnages présents dans ce lieu sous forme de liste
-    - les objets des personnages sous forme de liste de liste **:warning: faire attention à garder le même ordre que les personnages**
-    - les statuts des personnages sous forme de liste de liste **:warning: faire attention à garder le même ordre que les personnages**
-    - des blocs d'actions possibles :
-        - un champ action contenant le nom de l'action de la forme : 
-            - ```description``` : action spéciale exécutée automatiquement à l'entrée de chaque lieu
-            - ```fouiller lieu``` : sera exécuté à la place de la réponse par défaut donnée en début de fichier
-            - ```verbe objet``` : sera exécuté à la place de la réponse par défaut donnée en début de fichier
-            - tout autre forme n'aura pas d'action supplémentaire à celles du bloc
-            - :information_source: : un arbre récapitulatif de l'utilisation des actions par défaut se trouve [ici](./default_action_tree.md)
-        - un champ condition de l'action de la forme :
-            - ```entité a objet``` / ```entité a pas objet``` / ```entité possède objet``` / ```entité possède pas objet``` : vérifie si l'entité (lieu, personnage ou joueur) possède l'objet dans son inventaire.
-            - ```entité est statut``` / ```entité est pas statut``` : vérifie di l'entité (lieu, personnage ou joueur) a ce statut
-            - ```entité dans lieu``` / ```entité pas dans lieu``` : vérifie que le joueur ou un personnage est dans un lieu.
-            - ```cond1 et cond2``` : vérifie si les conditions sont toutes les deux valides.
-            - ```cond1 ou cond2``` : vérifie si au moins une des condition est valide.
-            - une condition peut être entourée de parenthèses ```(cond1)``` pour pouvoir être prioritaire sur son évaluation sinon les ```et``` seront prioritaires sur les ```ou```. Notez que des espaces peuvent être ajoutés avant ou après les parenthèses.
-        - un champ réaction sous la forme de chaîne de caractères qui sera affichée lors de l'exécution de l'action.
-        - un champ entité affectée : le nom de l'entité (joueur, personnage ou lieu) dont on veut changer les statuts, son inventaire ou encore sa localisation. Notez que si c'est un changement de lieu, ce champ doit obligatoirement être le joueur ou un personnage.
-        - un champ "status +" sous la forme de liste de statuts permettant d'ajouter des statuts à l'entité ciblée. Si le statut ```mort``` est ajouté au joueur, il perd la partie. Si le statut ```victoire``` est ajouté au joueur, il gagne a partie.
-        - un champ "status -" sous la forme d'une liste de statut permettant de retirer des statuts à l'entité ciblée. Notez que si un "status -" n'est pas déjà présent sur l'entité, rien ne se passera pour ce statut mais les autres seront quand même pris en compte.
-        - des champs "objets +", "objets -" sous la forme de liste d'objets permettant d'ajouter ou de retirer des objets à l'entité ciblée. Notez que si un "objet -" n'est déjà pas présent sur l'entité, rien ne se passera pour cet objet mais les autres seront quand même pris en compte.
-        - un champ lieu permettant de faire changer le joueur ou le personnage affecté de lieu. Ce champ permet aussi d'ajouter/retirer un/des statut ou un/des objets.
-        - **Note :** des mots clés sont à disposition tel que ```moi``` pour parler du joueur et ```lieu``` pour parler du lieu actuel.
-    - Notez que chaque bloc d'action est dans la colonne d'un lieu et donc ne peut s'exécuter que dans celui-ci. Cela rajoutera à chaque action la condition ```moi dans lieu``` automatiquement.
-    - Notez que deux entités **ne peuvent pas** avoir le même nom.
+- ```Interaction with non-existent object``` : TODO
+- ```Search by default``` : TODO
+- ```Language``` : EN (It is possible to choose FR. In this case, please follow the French version of this tutorial and the French CSV template.)
+
+### Items
+
+One column at a time, each item is represented by 3 features :
+- its name
+- its description
+- its initial statuses [list]
+
+### Characters
+
+One column at a time, each character is represented by 4 features:
+- its name
+- its description
+- its initial statuses [list]
+- its initial items [list] (Warning: in this list, each item name must have been written in the table concerning items)
+
+**Important** :
+- the player is a character and its name must be ```player```
+- when this character obtains the status ```dead```, the player loses the game
+- when it obtains the status```victory```, the player wins
+
+### Locations
+
+One column at a time, each location is represented by 6 features :
+- its name
+- its initial statuses [list]
+- its initial items [list] (Warning: in this list, each item name must have been written in the table concerning items)
+- its initial characters [list] (Warning: in this list, each character name must have been written in the table concerning characters)
+- its hints [liste]
+- its actions (These are detailed in the next section)
+
+### Actions
+
+Each action is attributed to a location. To do so, a block must be filled in the column the correspondant location.
+
+A block (action) is represented by 9 features :
+- its name (this is what the player will write to execute an action)
+- its condition (expression determining if an action can be performed)
+    - a simple condition follows one of the following syntaxes :
+        - ```Location``` is ```Status```
+        - ```Location``` is not ```Status```
+        - ```Location``` has ```Item```
+        - ```Location``` has not ```Item```
+        - ```Location``` has ```Character```
+        - ```Location``` has not ```Character```
+        - ```Character``` is ```Status```
+        - ```Character``` is not ```Status```
+        - ```Character``` has ```Item```
+        - ```Character``` has not ```Item```
+    - the expressions ```has``` et ```has not``` assert that :
+        - a location has or not un a character or an item
+        - a character has or not an item
+    - the expressions ```is``` et ```is not``` assert that :
+        - a location or a character has or a certain status
+    - une complex condition is composed of several simple conditions and logical terms :
+        - ```&``` to assert that two conditions are true
+        - ```|``` to assert that at least of two conditions is true
+        - ```(``` and ```)``` to define prioritary expressions (```&``` has priority over ```|```)
+    - ```Example``` : (player has fish | house is haunted) & house has not player
+- its reaction (this is simply the message that will be displayed if the player writes an action for which the condition is true)
+- its affected entity (name of a ```Location``` or ```Character```)
+- its added statuses [list] (statuses that will be added to the affected entity)
+- its removed statuses [list] (statuses that will be removed from the affected entity)
+- its added items [list] (items that will be added to the affected entity)
+- its removed items [liste] (items that will be removed from the affected entity)
+- its new location (if the affected entity is a ```Character```, it will go to this new location)
+
+# FRANCAIS
+
+## Création d'un scénario
+
+Un scénario se crée grâce à un fichier CSV. Vous trouvez un exemple ```TODO```.
+
+***Note* : Certaines cellules contiendront des listes. Elles suivent la syntaxe suivante : ```elem1 / elem2 / elem3```. Il est néanmoins possible d'écrire des listes de 0 ou 1 élément.**
+
+### Propriétés générales
+
+- ```Interaction avec objet``` : TODO
+- ```Fouiller par défaut``` : TODO
+- ```Langue``` : FR (Il est possible de choisir EN. Dans ce cas, nous vous conseillons vivement de suivre ce tutoriel en version anglaise et d'utiliser l'exemple de CSV en anglais.)
+
+### Objets
+
+Une colonne après l'autre, les objets sont représentés par 3 caractéristiques :
+- leur nom
+- leur description
+- leurs statuts initiaux [liste]
+
+### Personnages
+
+Une colonne après l'autre, les personnages sont représentés par 4 caractéristiques :
+- leur nom
+- leur description
+- leurs statuts initiaux [liste]
+- leurs objets au début de la partie [liste] (Attention les noms des objets mis dans cette liste doivent avoir été écrits dans le tableau concernant les objets)
+
+**Important** :
+- le joueur est un personnage et son nom doit absolument être ```joueur```
+- lorsque ce personnage obtient le statut ```mort```, le joueur a perdu et la partie est finie
+- lorsqu'il obtient le statut ```victoire```, le joueur a gagné
+
+### Lieux
+
+Une colonne après l'autre, les lieux sont représentés par 6 caractéristiques :
+- leur nom
+- leurs statuts initiaux [liste]
+- leurs objets au début de la partie [liste] (Attention les noms des objets mis dans cette liste doivent avoir été écrits dans le tableau concernant les objets)
+- leurs personnages au début de la partie [liste] (Attention les noms des personnages mis dans cette liste doivent avoir été écrits dans le tableau concernant les personnages)
+- leurs indices [liste]
+- leurs actions (Celles-ci sont détaillées dans la section suivante)
+
+### Actions
+
+Chaque action est attribuée à un lieu. Pour ce faire, il faut remplir un bloc dans la colonne du lieu correspondant.
+
+Un bloc (action) est caractérisé par 9 caractéristiques :
+- son nom (ce que le joueur devra écrire pour lancer l'action)
+- sa condition (expression qui détermine si l'action peut être exécutée)
+    - une condition simple peut être dans les formes suivantes :
+        - ```Lieu``` est ```Statut```
+        - ```Lieu``` est pas ```Statut```
+        - ```Lieu``` a ```Objet```
+        - ```Lieu``` a pas ```Objet```
+        - ```Lieu``` a ```Personnage```
+        - ```Lieu``` a pas ```Personnage```
+        - ```Personnage``` est ```Statut```
+        - ```Personnage``` est pas ```Statut```
+        - ```Personnage``` a ```Objet```
+        - ```Personnage``` a pas ```Objet```
+    - les expressions ```a``` et ```a pas``` permettent de vérifier si :
+        - un lieu possède ou non un personnage ou un objet
+        - un personnage possède ou non un objet
+    - les expressions ```est``` et ```est pas``` permettent de vérifier si :
+        - un lieu ou un personnage possède un certain statut
+    - une condition complexe est composée de plusieurs conditions simples (cs) et de caractères logiques :
+        - ```&``` pour vérifier que deux conditions sont vraies
+        - ```|``` pour vérifier qu'au moins une parmi deux conditions est vraie
+        - ```(``` et ```)``` pour définir des expressions prioritaires (en effet, ```&``` est prioritaire devant ```|```)
+    - ```Exemple``` : (joueur a poisson | maison est hantée) & maison a pas joueur
+- sa réaction (il s'agit tout simplement du message qui sera affiché si le joueur écrit une action dont la condition est vérifiée)
+- son entité affectée (```lieu``` ou ```personnage```)
+- ses statuts ajoutés [liste] (ensemble des statuts qui seront attribués à l'entité affectée)
+- ses statuts retirés [liste] (ensemble des statuts qui seront retirés à l'entité affectée)
+- ses objets ajoutés [liste] (ensemble des objets qui iront dans l'inventaire de l'entité affectée)
+- ses objets retirés [liste] (ensemble des objets qui sortiront de l'inventaire de l'entité affectée)
+- son changement de lieu (si l'entité affectée est un ```Personnage```, celui-ci ira vers le lieu indiqué)
