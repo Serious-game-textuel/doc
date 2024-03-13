@@ -7,10 +7,14 @@
 Component Medical_world_adventure as Mwa
 actor Utilisateur as util
 actor Administrateur as admin
+actor Moodle as moodle
 
 
 util -left-> Mwa : Démarrer une partie\nrépondre aux choix
 util <-left- Mwa : texte
+
+moodle -up->Mwa : données 
+moodle <-up-Mwa : demande de données
 
 admin -right-> Mwa : Ajout/\nSuppression \nde scénario
 admin <-right- Mwa : scénario
@@ -24,17 +28,20 @@ admin <-right- Mwa : scénario
 @startuml Logical-View
 actor Utilisateur as util
 actor Administrateur as admin
+actor Moodle as Moodle
 
-Component IHM
+Component IHM_Administrateur
+Component IHM_Utilisateur
 Component Medical_world_adventure as Mwa
-Component BDD
-Component Moodle
 
-util -up- IHM
-admin -down- IHM
-Mwa -right- BDD
-IHM -right- Mwa
-BDD -right- Moodle
+
+util -right- IHM_Utilisateur
+admin -right- IHM_Administrateur
+Mwa -up- IHM_Utilisateur
+Mwa -left- IHM_Administrateur
+
+
+Mwa -down- Moodle
 
 @enduml
 ```
