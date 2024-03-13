@@ -57,7 +57,13 @@ Class App {
     -startentities : Entity[]
     -language : Language
     -playerkeyword : string
-    -actionsdone : Action[]
+    -deaths : int
+    -actions : int
+    -visitedlocations : Location[]
+    -starttime : DateTime
+    -player : Player_Character
+    -defaultactionsearch : Default_Action
+    -defaultactioninteract : Default_Action
 }
 
 Class Entity {
@@ -71,13 +77,6 @@ Class Entity {
 Class Game {
     -{static} id : int
     --
-    -deaths : int
-    -actions : int
-    -visitedlocations : Location[]
-    -starttime : DateTime
-    -player : Player_Character
-    -defaultactionsearch : Default_Action
-    -defaultactioninteract : Default_Action
     -entities : Entity[]
 }
 
