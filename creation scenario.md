@@ -2,7 +2,7 @@
 
 ## Scenario creation
 
-A scenario is creating with a CSV file. You will find an example ```TODO```.
+A scenario is creating with a CSV file. You will find an example with the file ```example.csv```.
 
 ***Note* : Some cells will contain lists. They have the following syntax : ```elem1 / elem2 / elem3```. It it possible to write lists with 0 or 1 element.**
 
@@ -82,7 +82,7 @@ A block (action) is represented by 9 features :
 
 ## Création d'un scénario
 
-Un scénario se crée grâce à un fichier CSV. Vous trouvez un exemple ```TODO```.
+Un scénario se crée grâce à un fichier CSV. Vous trouvez un exemple dans le fichier ```exemple.csv```.
 
 ***Note* : Certaines cellules contiendront des listes. Elles suivent la syntaxe suivante : ```elem1 / elem2 / elem3```. Il est néanmoins possible d'écrire des listes de 0 ou 1 élément.**
 

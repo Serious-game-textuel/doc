@@ -7,14 +7,10 @@
 Component Medical_world_adventure as Mwa
 actor Utilisateur as util
 actor Administrateur as admin
-actor Moodle as moodle
 
 
 util -left-> Mwa : Démarrer une partie\nrépondre aux choix
 util <-left- Mwa : texte
-
-moodle -up->Mwa : données 
-moodle <-up-Mwa : demande de données
 
 admin -right-> Mwa : Ajout/\nSuppression \nde scénario
 admin <-right- Mwa : scénario
@@ -28,182 +24,176 @@ admin <-right- Mwa : scénario
 @startuml Logical-View
 actor Utilisateur as util
 actor Administrateur as admin
-actor Moodle as Moodle
 
-Component IHM_Administrateur
-Component IHM_Utilisateur
+Component IHM
 Component Medical_world_adventure as Mwa
+Component BDD
+Component Moodle
 
-
-util -right- IHM_Utilisateur
-admin -right- IHM_Administrateur
-Mwa -up- IHM_Utilisateur
-Mwa -left- IHM_Administrateur
-
-
-Mwa -down- Moodle
+util -up- IHM
+admin -down- IHM
+Mwa -right- BDD
+IHM -right- Mwa
+BDD -right- Moodle
 
 @enduml
 ```
 
-### Model de donnée
+### Modèle de données
 
 ```plantuml
 @startuml
 
-Enum Langue {
+Enum Language {
     FR
     EN
 }
 
-Class Jeu{
-  -partie : Partie
-  -sauvegarde : Partie
+Class App {
+    -{static} instance : App
+    -game : Game
+    -save : Game
+    -csvdata : string[][]
+    -startentities : Entity[]
+    -language : Language
+    -playerkeyword : string
+    -actionsdone : Action[]
 }
-Class Entite{
+
+Class Entity {
     -{static} id : int
-  --
+    --
     -description : string
-    -nom : string
+    -name : string
     -status : string[]
 }
 
-Class Partie{
+Class Game {
     -{static} id : int
-  --
-    -morts : int
+    --
+    -deaths : int
     -actions : int
-    -lieu_visités : int
-    -heure_debut : date
-    -langues : Langue
-    -lieu_actuel : Lieu
-    -player : Joueur
-    -action_defaut_fouiller : ActionDefaut
-    -action_defaut_interaction : ActionDefaut
+    -visitedlocations : Location[]
+    -starttime : DateTime
+    -player : Player_Character
+    -defaultactionsearch : Default_Action
+    -defaultactioninteract : Default_Action
     -entities : Entity[]
-  --
-    +bool change_lieu(id: int)
-    +void add_entity(entity : Entity)
-    +Entity get_entity(name : string)
-}
-
-Class Inventaire{
-    -{static} id : int
-  --
-    +Materiel get_materiel(id: int)
-    +Materiel[] get_materiel()
-}
-
-Class Materiel{
-    
-}
-
-Class Personnage{
-  --
-    +Inventaire get_inventaire()
-}
-
-Class Joueur {
-
-}
-
-Class PNJ {
- -emplacement_actuel : Lieu
-}
-
-Class Lieu{
-  --
-    +Inventaire get_inventaire()
-    +Personnage[] get_personnages()
-    +bool check_action(action: Action)
-    +Indice[] get_indices()
-    +void ajoutPersonnage(personnage: Personnage)
-    +void retraitpersonnage(personnage: Personnage)
-}
-
-Class Action{
-    -{static} id : int
-  --
-    -description: String
-  --
-    +string[] do_conditions()
-}
-
-Class ActionDefaut{
-    -{static} id : int
-  --
-    +string[] do_conditions_verb(verbe : string)
-}
-
-Class Condition{
-    -{static} id : int
-  --
-    +void do_reaction()
-}
-
-Class ConditionFeuille {
-    -entite1 : Entite
-    -entite2 : Entite
-    -status : String
-    -connecteur : String
-    -condition : Condition
-}
-
-Class ConditionNoeud {
-    -condition1 : Condition
-    -condition2 : Condition
-    -connecteur : String
 }
 
 Class Reaction {
     -{static} id : int
-    -newStatus : String
-    -oldStatus : String
-    -materiel_add : Materiel
-    -materiel_remove : Materiel
-    -description : String
+    --
+    -description : string
+    -oldstatus : string[]
+    -newstatus : string[]
+    -olditems : Item[]
+    -newitems : Item[]
 }
 
-Class ReactionLieu{
-    -lieux_affecte : Lieu
+Class Inventory {
+    -{static} id : int
+    --
+    -items : Item[]
 }
 
-Class ReactionPerso{
-    -perso_affecte : Personnage
-    -deplacement : Lieu
+Class Action {
+    -{static} id : int
+  --
+    -description: string
+    -conditions : Condition[]
 }
 
+Class Default_Action {
+}
 
-Class Indice{
+Class Condition {
+    -{static} id : int
+    --
+    -reactions : Reaction[]
+}
+
+Class Leaf_Condition {
+    -entity1 : Entity
+    -entity2 : Entity
+    -status : string[]
+    -connector : string
+}
+
+Class Node_Condition {
+    -condition1 : Condition
+    -condition2 : Condition
+    -connecteur : string
+}
+
+Class Player_Character {}
+
+Class Item {}
+
+Class Location {
+    -inventory : Inventory
+    -hints : Hint[]
+    -actions : Action[]
+}
+
+Class Location_Reaction {
+    -location : Location
+}
+
+Class Character {
+    -inventory : Inventory
+    -currentlocation : Location
+}
+
+Class Character_Reaction {
+    -character : Character
+    -newlocation : Location
+}
+
+Class No_Entity_Reaction {}
+
+Class Hint {
     -{static} id : int
   --
     -description : string
 }
 
-note "Chaque champ private a\nun getter et un setter" as N1
+Class Npc_Character {}
 
-Jeu o-- Partie
-Personnage o-- Inventaire
-Partie o-- Personnage
-Partie o- Langue
-Lieu o-- Inventaire
-Lieu o-- Indice
-Action o-- Condition
-Action o.. ActionDefaut
-Condition o-- Reaction
-Action --o Lieu
-Lieu o-- Personnage
-Partie o-- Lieu
-Inventaire o-- Materiel
-Entite o.. Personnage
-Entite o.. Lieu
-Entite o.. Materiel
-Reaction o.. ReactionLieu
-Reaction o.. ReactionPerso
-Condition o.. ConditionFeuille
-Condition o.. ConditionNoeud
-Personnage o.. Joueur
-Personnage o.. PNJ
+Reaction o.. Character_Reaction
+Action o.. Default_Action
+Entity o.. Item
+Entity o.. Location
+Entity o.. Character
+Condition o.. Leaf_Condition
+Reaction o.. Location_Reaction
+Reaction o.. No_Entity_Reaction
+Condition o.down. Node_Condition
+Character o.. Npc_Character
+Character o.. Player_Character
+
+App --o Game
+/'App o-- Entity'/
+App -o Language
+App --o Action
+Game --o Location
+/'Game o-- Player_Character'/
+/'Game o-up- Default_Action'/
+/'Game o-right- Entity'/
+Action --o Condition
+/'Reaction o-- Item'/
+Inventory --o Item
+Condition --o Reaction
+/'Leaf_Condition --o Entity'/
+Node_Condition --o Condition
+Location --o Inventory
+Location --o Hint
+Location --o Action
+Location_Reaction --o Location
+Character --o Inventory
+Character --o Location
+Character_Reaction --o Location
+Character_Reaction --o Character
 
 @enduml
 ```
