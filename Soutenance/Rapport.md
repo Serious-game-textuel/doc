@@ -158,7 +158,9 @@ Nous avons implémenté la détection de synonymes pour des mots en anglais et e
 
 ## Gestion de projet (méthode, planning prévisionnel et effectif, gestion des risques, rôles des membres ...)
 
-Pour notre projet, nous avons opté pour une gestion de projet agile. La durée du projet étant relativement courte, il était important pour nous d’avoir une bonne communication entre les différents membres du groupe et de pouvoir nous adapter rapidement. Que ce soit en cas de nouveaux besoins du client ou, étant donné que nous travaillons avec de nouvelles technologies pour nous, de la nécessité de faire marche arrière et de trouver une nouvelle solution. Cela nous a également permis de rester motivés tout au long du projet, grâce à la livraison d’itération régulière, qui en plus de nous donner une plus grande flexibilité et réactivité, nous a permis d’observer une réelle progression du projet.
+Pour notre projet, nous avons opté pour une gestion de projet agile. La durée du projet étant relativement courte, il était important pour nous d’avoir une bonne communication entre les différents membres du groupe et de pouvoir nous adapter rapidement. Que ce soit en cas de nouveaux besoins du client ou, étant donné que nous travaillons avec de nouvelles technologies pour nous, de la nécessité de faire marche arrière et de trouver une nouvelle solution. 
+
+Cela nous a également permis de rester motivés tout au long du projet, grâce à la livraison d’itération régulière, qui en plus de nous donner une plus grande flexibilité et réactivité, nous a permis d’observer une réelle progression du projet.
 
 Nous équipe de projet était composé de 4 membres, chacun avec un rôle :
 - Paul Grandhomme : chef de Projet/ développeur
@@ -168,30 +170,256 @@ Nous équipe de projet était composé de 4 membres, chacun avec un rôle :
 
 Nous avons réparti notre planning en deux sprints de trois semaines environ et un sprint de  pré-études d’une semaine.
 La semaine de pré-étude a eu pour objectif de :
-nous familiariser avec le sujet 
-nous familiariser avec les technologies utilisées (Moodle, PHP)
-définir architecture de l'application
-définir le format du scénario
-définir les différentes tâches à réaliser
+    
+    - nous familiariser avec le sujet 
+    - nous familiariser avec les technologies utilisées (Moodle, PHP)
+    - définir architecture de l'application
+    - définir le format du scénario
+    - définir les différentes tâches à réaliser
 Le premier sprint est quant à lui axé sur la mise en places de l’application et de toutes ses fonctionnalités de base avec deux grand axes :
-la gestion du parseur pour le csv et l’initialisation d’une partie
-la gestion de la partie en elle-même et de son déroulement
+
+    - la gestion du parseur pour le csv et l’initialisation d’une partie
+    - la gestion de la partie en elle-même et de son déroulement
 A la fin de ce sprint, l’objectif que nous souhaitions atteindre était d’obtenir un plugin avec toutes les fonctionnalités de base demandées utilisable.
+
 Le dernier sprint consiste en des améliorations ajoutées au plugin afin de rendre l'interaction avec l’utilisateur plus agréable.
 
+<b>Planing previsionel</b> :
+```plantuml
+
+[Edit online] 	
+
+@startgantt
+Project starts the 29th of january 2024
+saturday are closed
+sunday are closed
+hide footbox 
+
+2024-01-29 to 2024-02-02 are named [Pré-étude]
+2024-01-29 to 2024-02-02 are colored in lightgreen
+2024-02-02 to 2024-02-23 are named [Sprint 1]
+2024-02-02 to 2024-02-23 are colored in lime
+2024-02-23 to 2024-03-14 are named [Sprint 2]
+2024-02-23 to 2024-03-14 are colored in green
+
+/' Pré-étude '/
+[Rdv présentation client] happens the 30th of january 2024
+[Rdv complément client] happens the 31st of january 2024
+[Installation de l'espace de travail] requires 1 days
+[Formation Moodle] requires 3 days
+[Formation PHP] requires 3 days
+[Installation de l'espace de travail] ->[Formation Moodle]
+[Installation de l'espace de travail] ->[Formation PHP]
+[Définition du déroulement d'une partie] requires 1 days
+[Définition des fonctionnalités/contraintes] requires 1 days
+[Définition des taches] requires 2 days
+[Définition du déroulement d'une partie] -> [Définition des taches]
+[Définition des fonctionnalités/contraintes] -> [Définition des taches]
+[Création du diagramme de classes] requires 1 days
+[Création du diagramme de contexte] requires 1 days
+[Création de la vue logique] requires 1 days
+[Définition des taches] -> [Création du diagramme de classes]
+[Définition des taches] -> [Création du diagramme de contexte]
+[Définition des taches] -> [Création de la vue logique]
+
+/' sprint 1->2 '/
+[Formation Moodle] -> [Mise en place de l'intégration continue (Github actions)]
+[Formation PHP] -> [Mise en place de l'intégration continue (Github actions)]
+[Création du diagramme de classes] -> [Mise en place de l'intégration continue (Github actions)]
+[Création du diagramme de contexte] -> [Mise en place de l'intégration continue (Github actions)]
+[Création de la vue logique] -> [Mise en place de l'intégration continue (Github actions)]
+[Formation Moodle] -> [Définition syntaxe du fichier d'entrée]
+[Formation PHP] -> [Définition syntaxe du fichier d'entrée]
+[Création du diagramme de classes] -> [Définition syntaxe du fichier d'entrée]
+[Création du diagramme de contexte] -> [Définition syntaxe du fichier d'entrée]
+[Création de la vue logique] -> [Définition syntaxe du fichier d'entrée]
+
+/' sprint 1 '/
+
+[Rdv MPI] happens the 13rd of february 2024
+[Mise en place de l'intégration continue (Github actions)] requires 2 days
+[Création des squelettes de classes] requires 4 days
+[Mise en place de l'intégration continue (Github actions)] -> [Création des squelettes de classes]
+[Définition syntaxe du fichier d'entrée] requires 4 days
+[Création du parseur de fichier d'entrée] requires 8 days
+[Définition syntaxe du fichier d'entrée] -> [Création du parseur de fichier d'entrée]
+[définition des chemins possibles] requires 2 days
+[Création du parseur de fichier d'entrée] -> [définition des chemins possibles]
+[Gérer interface joueur] requires 2 days
+[Création du parseur de fichier d'entrée] -> [Gérer interface joueur]
+[Gestion des entrées utilisateur] requires 4 days
+[Création des squelettes de classes] -> [Gestion des entrées utilisateur]
+[Gestion des déplacements] requires 3 days
+[Gestion des entrées utilisateur] -> [Gestion des déplacements]
+[Affichage de l'inventaire] requires 3 days
+[Gestion des entrées utilisateur] -> [Affichage de l'inventaire]
+
+[Rdv mi-projet] happens the 23rd of february 2024
+
+[Création vue professeur] requires 2 days
+[Création vue utilisateur (étudiant)] requires 2 days
+[validateur fichier csv] requires 4 days
+[dépôt d'une map] requires 1 days
+[Création automatique de la map] requires 3 days
+[Création sauvegarde] requires 2 days
+[Cargement sauvegarde] requires 1 days
+[Récupération d'indices] requires 2 days
+[Calcul de score (optionnel)] requires 1 days
+[Amélioration des entrées clavier] requires 4 days
+[Permettre la traduction] requires 3 days
+[Préparation soutenance] requires 2 days
+
+
+
+[Rdv mi-projet] -> [Création vue professeur]
+[Création vue professeur] -> [Création vue utilisateur (étudiant)]
+[Création vue utilisateur (étudiant)] -> [validateur fichier csv] 
+[validateur fichier csv] -> [dépôt d'une map]
+[Rdv mi-projet] -> [Création sauvegarde]
+[Création sauvegarde]-> [Cargement sauvegarde]
+[Cargement sauvegarde] -> [Récupération d'indices]
+[Récupération d'indices] -> [Calcul de score (optionnel)] 
+[Récupération d'indices] -> [Amélioration des entrées clavier]
+[dépôt d'une map] -> [Création automatique de la map] 
+[Amélioration des entrées clavier] -> [Permettre la traduction]
+[Création automatique de la map] -> [Préparation soutenance]
+[Permettre la traduction] -> [Préparation soutenance]
 
 
 
 
+[Soutenance projet] happens the 15th of march 2024
+
+@endgantt
+
+```
 
 
 ### Planning effectif
 
-Au cours de notre projet, nous avons dû faire évoluer le planning prévisionnel afin de mieux répondre aux besoins actuels, et de pallier aux imprévus. Les objectifs des deux premières parties ont été respectés et atteints. A la fin du premier sprint, nous avions un plugin Moodle fonctionnel et utilisable. Nous avions également un peu d’avance sur ce que nous avions prévu et avons commencé à apporter les premières améliorations. Le dernier sprint, lui, a été modifié, d’une part dû à un changement de notre gestion des données et donc d’une refonte du plugin, et d’autre part par la prise en compte d’une semaine de vacances que nous n’avions pas noté dans le planning.
+
+
+Au cours de notre projet, nous avons dû faire évoluer le planning prévisionnel afin de mieux répondre aux besoins actuels, et de pallier aux imprévus. 
+
+Les objectifs des deux premières parties ont été respectés et atteints. A la fin du premier sprint, nous avions un plugin Moodle fonctionnel et utilisable. Nous avions également un peu d’avance sur ce que nous avions prévu et avons commencé à apporter les premières améliorations. 
+
+Le dernier sprint, lui, a été modifié, d’une part dû à un changement de notre gestion des données et donc d’une refonte du plugin, et d’autre part par la prise en compte d’une semaine de vacances que nous n’avions pas noté dans le planning.
+
 Ce qui nous à donné la répartition des tâches suivante :
+
+- <b>Planning effectif</b> :
+```plantuml
+
+[Edit online] 	
+
+@startgantt
+Project starts the 29th of january 2024
+saturday are closed
+sunday are closed
+hide footbox 
+
+2024-01-29 to 2024-02-02 are named [Pré-étude]
+2024-01-29 to 2024-02-02 are colored in lightgreen
+2024-02-02 to 2024-02-23 are named [Sprint 1]
+2024-02-02 to 2024-02-23 are colored in lime
+2024-02-24 to 2024-03-03 are named [vacance]
+2024-02-24 to 2024-03-03 are colored in grey
+2024-03-04 to 2024-03-14 are named [Sprint 2]
+2024-03-04 to 2024-03-14 are colored in green
+
+/' Pré-étude '/
+[Rdv présentation client] happens the 30th of january 2024
+[Rdv complément client] happens the 31st of january 2024
+[Installation de l'espace de travail] requires 1 days
+[Formation Moodle] requires 3 days
+[Formation PHP] requires 3 days
+[Définition du déroulement d'une partie] requires 1 days
+[Définition des fonctionnalités/contraintes] requires 1 days
+[Définition des taches] requires 2 days
+[Création du diagramme de classes] requires 1 days
+[Création du diagramme de contexte] requires 1 days
+[Création de la vue logique] requires 1 days
+
+
+[Définition du déroulement d'une partie] -> [Définition des taches]
+[Définition des fonctionnalités/contraintes] -> [Définition des taches]
+[Définition des taches] -> [Création du diagramme de classes]
+[Définition des taches] -> [Création du diagramme de contexte]
+[Définition des taches] -> [Création de la vue logique]
+[Installation de l'espace de travail] ->[Formation Moodle]
+[Installation de l'espace de travail] ->[Formation PHP]
+
+[Rdv MPI] happens the 13rd of february 2024
+[Création des squelettes de classes] requires 3 days
+[Gestion des entrées utilisateur] requires 4 days
+[gestion des déplacements] requires 3 days
+[Gestion des traductions] starts 22rd of february 2024
+[Création bouton d'aide] starts  21th of february 2024
+[Affichage de l'inventaire] requires 1 days
+[Mise en place de l'intégration continue (Github actions)] requires 2 days
+[Définition syntaxe du fichier d'entrée] requires 4 days
+[Mise en place de tests] requires 10 days 
+[Gestion des exceptions] requires 2 weeks
+[Gestion des exceptions] starts 22rd of february 2024
+[Création du parseur de fichier d'entrée] requires 8 days
+[définition des chemins possibles] requires 2 days
+[préparation soutenance mi-projet] requires 1 days
+[préparation soutenance mi-projet] starts 22rd of february 2024
+[Rdv mi-projet] happens the 23rd of february 2024
+
+
+
+/' sprint 1->2 '/
+[gestion des déplacements] -> [Création bouton d'aide]
+[Création du diagramme de classes]->[Création des squelettes de classes]
+[Formation Moodle] -> [Mise en place de l'intégration continue (Github actions)]
+[Formation PHP] -> [Mise en place de l'intégration continue (Github actions)]
+[Création du diagramme de classes] -> [Mise en place de l'intégration continue (Github actions)]
+[Création du diagramme de contexte] -> [Mise en place de l'intégration continue (Github actions)]
+[Création de la vue logique] -> [Mise en place de l'intégration continue (Github actions)]
+[Formation Moodle] -> [Définition syntaxe du fichier d'entrée]
+[Formation PHP] -> [Définition syntaxe du fichier d'entrée]
+[Création du diagramme de classes] -> [Définition syntaxe du fichier d'entrée]
+[Création du diagramme de contexte] -> [Définition syntaxe du fichier d'entrée]
+[Création de la vue logique] -> [Définition syntaxe du fichier d'entrée]
+
+/' sprint 1-2 '/
+
+[Affichage sortie disponible] starts  4th of march 2024
+[Affichage sortie disponible] requires 1 days
+[Ajout d'une carte] starts  4th of march 2024
+[Récupération d'indices] requires 2 days
+[Amélioration des entrées clavier] requires 5 days
+[Mise en place base donnée] starts  4th of march 2024
+[Mise en place base donnée] requires 1 weeks and 1 days
+[Préparation soutenance] starts  12th of march 2024
+[Préparation soutenance] requires 3 days
+
+[Mise en place de tests] -> [Gestion des exceptions]
+
+[gestion des déplacements] -> [Gestion des traductions]
+[Création de la vue logique] -> [Création des squelettes de classes]
+[Définition syntaxe du fichier d'entrée] ->[Mise en place de tests]
+[Définition syntaxe du fichier d'entrée] -> [Création du parseur de fichier d'entrée]
+[Création du parseur de fichier d'entrée] -> [définition des chemins possibles]
+[Création des squelettes de classes] -> [Gestion des entrées utilisateur]
+[Gestion des entrées utilisateur] -> [gestion des déplacements]
+[Gestion des entrées utilisateur] -> [Affichage de l'inventaire]
+
+[Affichage sortie disponible] -> [Amélioration des entrées clavier] 
+[Affichage sortie disponible] -> [Récupération d'indices] 
+
+
+
+[Soutenance projet] happens the 15th of march 2024
+
+@endgantt
+
+```
 
 
 ### Gestion des risques
+
 Pour la gestion des risques nous avons effectué une matrice SWOT afin de mieux les identifier et les adresser.
 
 - **Forces :**
@@ -219,24 +447,33 @@ Les principales faiblesses que nous avons identifiées concernent la taille de l
 Dans la version locale de Moodle que nous avons téléchargée, un dossier est dédié au code source des extensions installées. Nous y avons donc ajouté la nôtre. Pour ce faire, Moodle propose un outil, appelé Plugin Skeleton Generator, permettant de générer un squelette pour notre extension. Les fichiers PHP générés concernent globalement l’affichage de l’activité (côtés administrateur et utilisateur). A partir de ceci, nous avons pu développer le cœur de notre jeu.
 
 Pour développer le projet à plusieurs, nous avons créé un dépôt GitHub. Son outil GitHub Actions nous a aidés à ce que la structure que la syntaxe PHP soit respectée pour l’environnement Moodle. En effet, nous avons ajouté l’outil Code Checker de Moodle à GitHub Actions. Ainsi, à chaque pull request, nous avons pu nous assurer que l’ensemble du code a une bonne syntaxe.
+
 Nous avons également installé PHP Unit. Cela nous a permis d’écrire des fichiers de tests manuellement dans le projet.
 
 
 ## Métriques logicielles
 
-Lignes de code : 24 059
-Langages : PHP, Javascript, HTML
-Temps ingénieur : 512 heures (128 heures/personne)
 
+- **Lignes de code :** 24 059
+- **Langages :** PHP, Javascript, HTML
+- **Temps ingénieur :** 512 heures (128 heures/personne)
+
+![rapport_git](../images/rapportgit.png) 
+![commit](../images/commit.png)
 
 
 ## Conclusion (Retour d'expérience)
 La réalisation de notre projet de fin d'études a été une expérience enrichissante et gratifiante pour toute l'équipe. Nous avons atteint nos objectifs initiaux qui étaient de développer un moteur de jeu répondant aux spécifications fonctionnelles définies par le porteur de projet et notre encadrant, Lionel DI MARCO.  A savoir la capacité de lancer des scénarios proposés par les utilisateurs-enseignants et de permettre une utilisation autonome par les utilisateurs-apprenants via une extension Moodle.
 
 Cette expérience nous a permis de progresser et de découvrir les technologies et méthodes nécessaires au développement d’un plugin Moodle, notamment le PHP. La partie conception du plugin était particulièrement intéressante et un challenge. Nous avons pu nous rendre compte de l’importance de cette étape et de l’impact qu’elle peut avoir tout au long du projet. Avec le recul apporté par le projet, nous aurions pu approfondir cette partie et nos connaissances sur le fonctionnement de moodle pour mieux concevoir la gestion des données et ainsi éviter la modification de la base de données que nous avons effectuée.
+
+
 La façon dont nous avons abordé le projet et sa gestion nous à permis d’aborder le deuxième sprint de manière plus sereine, sachant que nous avions déjà une application fonctionnelle à la fin du premier sprint, tout en restant flexible aux différents changements nécessaires à apporter au projet. Nous avons en effet dû modifier le planning prévisionnel pour le dernier sprint, sans que cela n’entrave réellement le projet et que celui-ci prenne du retard. Notre communication et le fait que l’on travail en présentiel ont été des points forts de notre organisation qui ont permis de nous adapter face aux problèmes qui sont survenus au cours du projet et nous ont permis de trouver des solutions.
+
+
 En conclusion, ce projet nous a offert une expérience pratique et concrète dans le domaine du développement logiciel, tout en nous permettant de mettre en pratique les connaissances acquises au cours de nos études. Cette expérience nous a également permis d'apprendre des leçons précieuses sur la gestion de projet, le travail d'équipe et l'importance de la communication dans un environnement professionnel. Enfin, nous sommes confiants dans le fait que les compétences et les connaissances acquises au cours de ce projet nous seront utiles dans nos futures carrières professionnelles.
 
+Pour la continuation de ce projet, les fichiers tests nécessitent d'être mis à jour, en effet la modification de la base de données a entraîné des changements qui modifient la façon dont certains tests doivent être réalisés. L’ajout du calcul des scores, ainsi qu’une amélioration du traitement des entrées du joueur pourrait également être implémenté.  
 
 
 
