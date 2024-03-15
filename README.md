@@ -38,3 +38,13 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 this program.  If not, see <https://www.gnu.org/licenses/>.
+
+## Contributors ##
+
+Bracquier Benjamin - [Github](https://github.com/bracquib)
+
+Courant Mathis - [Github](https://github.com/mathiscourant)
+
+Gallier Loric - [Github](https://github.com/LoricGallier)
+
+Grandhomme Paul  - [Github](https://github.com/Ppcocopp)
